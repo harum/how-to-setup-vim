@@ -24,7 +24,10 @@
 "    -> Helper functions
 "
 " Note:
-"   Inspired by https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
+"   Inspired by:
+"   -  https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
+"   -  https://github.com/nikolalsvk/dotfiles/blob/master/.vimrc
+"   -  https://pragmaticpineapple.com/ultimate-vim-typescript-setup/
 " ==============================================================================
 
 
@@ -32,12 +35,36 @@
 " Plugins
 " ==============================================================================
 call plug#begin()
-Plug 'morhetz/gruvbox'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-fugitive'
+Plug 'morhetz/gruvbox'            " colorscheme
+Plug 'ctrlpvim/ctrlp.vim'         " file search
+
+Plug 'airblade/vim-gitgutter'     " Show git diff of lines edited
+Plug 'tpope/vim-fugitive'         " :Gblame
+Plug 'tpope/vim-rhubarb'          " :GBrowse
+
+Plug 'tpope/vim-endwise'          " Autocomplete end after a do
+Plug 'janko/vim-test'             " Run test, :TestFile, :TestNearest
+Plug 'dense-analysis/ale'         " linter
+
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+
+Plug 'nikolalsvk/vim-rails'       " Rails plugin
+
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 call plug#end()
 
+" ctrlpvim/ctrlp.vim config
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+" dense-analysis/ale config
+let g:ale_fixers = {
+ \ 'javascript': ['eslint']
+ \ }
+let g:ale_fix_on_save = 1
 
 " ==============================================================================
 " General
@@ -252,6 +279,9 @@ map <silent> <leader><cr> :noh<cr>
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
+
+" Enable Mouse mode in all modes
+set mouse=a
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
