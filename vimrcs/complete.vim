@@ -51,6 +51,14 @@ Plug 'leafgarland/typescript-vim' " TypeScript syntax
 
 Plug 'nikolalsvk/vim-rails'       " Rails plugin
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Auto completion
+
+Plug 'godlygeek/tabular'          " aligning text
+Plug 'preservim/vim-markdown'     " markdown syntax highlighting
+
+" markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
 " post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
@@ -65,6 +73,21 @@ let g:ale_fixers = {
  \ 'javascript': ['eslint']
  \ }
 let g:ale_fix_on_save = 1
+
+" CoC extensions
+" add TypeScript, Vue and other language server
+let g:coc_global_extensions = ['coc-tsserver', 'coc-vetur', '@yaegassy/coc-volar', 'coc-eslint', 'coc-prettier', 'coc-json']
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " ==============================================================================
 " General
@@ -90,6 +113,9 @@ let mapleader = " "
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+" Source Vim configuration file and install plugins
+nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
 
 " ==============================================================================
 " VIM user interface
