@@ -54,7 +54,7 @@ Plug 'nikolalsvk/vim-rails'       " Rails plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Auto completion
 
 Plug 'godlygeek/tabular'          " aligning text
-Plug 'preservim/vim-markdown'     " markdown syntax highlighting
+Plug 'preservim/vim-markdown'     " markdown syntax highlighting, :MarkdownPreview
 
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
@@ -132,7 +132,8 @@ source $VIMRUNTIME/menu.vim
 " Turn on the Wild menu
 set wildmenu
 
-set ruler         " show the cursor position all the time
+" show the cursor position all the time
+set ruler
 
 " Height of the command bar
 set cmdheight=1
@@ -384,7 +385,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " Editing mappings
 " ==============================================================================
 " Fast escape
-:imap jk <Esc>
+imap jk <Esc>
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -416,6 +417,11 @@ map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
+
+" Ctrl + c for copy to clipboard
+vmap <C-c> "+y
+" Ctrl + p for paste from clipboard
+vmap <C-p> "+p
 
 " ==============================================================================
 " Misc
