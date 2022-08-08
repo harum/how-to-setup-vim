@@ -8,6 +8,7 @@ Below is minimal basic commands that you should know so you can use Vim. You can
 `:ter[minal]` - open a terminal window
 
 ## Open and Close File
+
 We can open single file or open folder using Vim.
 ```bash
 # open current folder
@@ -158,6 +159,8 @@ Once we already inside Vim, we can use
 ## Tabs
 `:te` or `:tabnew` or `:tabnew {page.words.file}` - open a file in a new tab
 
+`:tabnew %` - open current opened file in a new tab
+
 `gt` or `:tabn[ext]` - move to the next tab
 
 `gT` or `:tabp[revious]` - move to the previous tab
@@ -184,3 +187,7 @@ Once we already inside Vim, we can use
 
 `Ctrl`+`w` then `k` or `Ctrl` + `k` - move cursor to the window above (horizontal split)
 
+
+
+## Git
+[https://michaelthessel.com/using-vimdiff-as-git-diff-tool/](https://michaelthessel.com/using-vimdiff-as-git-diff-tool/)
