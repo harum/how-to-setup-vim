@@ -141,6 +141,7 @@ let g:rehash256 = 1
 " <-----------------------------------------------------------------------------
 " vim-airline/vim-airline
 " Status line
+" See https://github.com/powerline/fonts if you want to use powerline font
 " ------------------------------------------------------------------------------
 " Enabling Powerline symbols
 let g:airline_powerline_fonts = 1
