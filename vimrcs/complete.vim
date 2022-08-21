@@ -31,6 +31,8 @@
 "   -  https://pragmaticpineapple.com/ultimate-vim-typescript-setup/
 " ==============================================================================
 
+
+
 " ==============================================================================
 " Plugins
 " ------------------------------------------------------------------------------
@@ -60,8 +62,6 @@ Plug 'airblade/vim-gitgutter'                             " show git diff of lin
 
 " -> Formatting and Autocomplete Section
 Plug 'godlygeek/tabular'                                  " Aligning text
-" nerdcommenter have collided map with coc
-" Plug 'preservim/nerdcommenter'                            " Comment
 Plug 'tpope/vim-surround'                                 " Easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-endwise'                                  " Autocomplete end after a do
 Plug 'neoclide/coc.nvim', {'branch': 'release'}           " Auto completion
@@ -99,10 +99,13 @@ Plug 'tpope/vim-rhubarb'                                  " :GBrowse
 Plug 'tpope/vim-rails'                                    " Rails plugin
 call plug#end()
 
-" Install plugins and refresh current vmrc source
-nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
+" Source Vim configuration file and install plugins
+nnoremap <silent> <leader>r1 :source ~/.vimrc \| :PlugInstall<CR>
+" Open Vim configuration file for editing
+nnoremap <silent> <leader>r2 :e ~/.vimrc<CR>
 
 " ==============================================================================
+
 
 
 " ==============================================================================
@@ -128,14 +131,12 @@ let g:gruvbox_bold = 0
 " ----------------------------------------------------------------------------->
 
 
-
 " <-----------------------------------------------------------------------------
 " tomasr/molokai
 " color scheme
 " ------------------------------------------------------------------------------
 let g:rehash256 = 1
 " ----------------------------------------------------------------------------->
-
 
 
 " <-----------------------------------------------------------------------------
@@ -169,15 +170,12 @@ let g:airline_theme='gruvbox'
 " ----------------------------------------------------------------------------->
 
 
-
 " <-----------------------------------------------------------------------------
 " airblade/vim-gitgutter
 " clobber gitgutter sign
 " ------------------------------------------------------------------------------
 let g:gitgutter_sign_allow_clobber = 1
 " ----------------------------------------------------------------------------->
-
-
 
 
 " -> Formatting and Autocomplete Section =======================================
@@ -191,7 +189,6 @@ let g:ale_fixers = {
  \ }
 let g:ale_fix_on_save = 1
 " ----------------------------------------------------------------------------->
-
 
 
 " <----------------------------------------------------------------------------
@@ -286,7 +283,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>ff  <Plug>(coc-fix-current)
 
 " Run the Code Lens action on the current line.
 nmap <leader>cl  <Plug>(coc-codelens-action)
@@ -351,7 +348,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " ---------------------------------------------------------------------------->
 
 
-
 " <---------------------------------------------------------------------------
 " prettier/vim-prettier
 " plugin wrapper for prettier
@@ -367,19 +363,33 @@ let g:prettier#autoformat_config_present = 1
 
 
 
+" -> Search and Navigation Section ===========================================
 
-" -> Search and Navigation Section
+" <---------------------------------------------------------------------------
+" junegunn/fzf.vim
+" Fuzzy finder
+" ----------------------------------------------------------------------------
+" Map fzf search to CTRL P
+nnoremap <C-p> :GFiles<Cr>
+" Map fzf + ag search to CTRL G
+nnoremap <C-g> :Rg <Cr>
+" --------------------------------------------------------------------------->
 
 
+" -> Functions Section =======================================================
 
-
-" -> Functions Section
-
+" --------------------------------------------------------------------------->
+" janko/vim-test
+" Run test
+" ----------------------------------------------------------------------------
+" vim-test shortcut for running tests
+nnoremap <silent> <leader>; :TestNearest<CR>
+nnoremap <silent> <leader>' :TestFile<CR>
+" --------------------------------------------------------------------------->
 
 
 
 " -> Massive Plugin Section
-
 
 
 
@@ -407,6 +417,8 @@ let mapleader = " "
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+
 
 " ==============================================================================
 " VIM user interface
@@ -468,12 +480,10 @@ set number
 set numberwidth=5
 " Show line numbers as relative number to current cursor
 set relativenumber
-" show the cursor position all the time
+" Show the cursor position all the time
 set ruler
-
-" Make it obvious where max characters position is
-set textwidth=100
-set colorcolumn=+1
+" Toggle relative line numbers
+nnoremap <leader>rn :set relativenumber!<cr>
 
 " Disable folding by default
 set nofoldenable
@@ -487,6 +497,8 @@ set diffopt+=vertical
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
+
+
 
 " ==============================================================================
 " Colors and Fonts
@@ -551,6 +563,7 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
 endif
 
 
+
 " ==============================================================================
 " Files and backups
 " ==============================================================================
@@ -562,6 +575,8 @@ set autowrite
 set nobackup
 set nowritebackup
 set noswapfile
+
+
 
 " ==============================================================================
 " Text, tab and indent related
@@ -610,6 +625,8 @@ endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-Tab> <c-n>
 
+
+
 " ==============================================================================
 " Visual mode related
 " ==============================================================================
@@ -619,6 +636,8 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " search selected words
 vnoremap // y/<C-R>"<CR>
 vnoremap /a y/Ag<space><C-R>"<CR>
+
+
 
 " ==============================================================================
 " Moving around, tabs and buffers
@@ -695,11 +714,13 @@ augroup vimrcEx
 augroup END
 
 
+
 " ==============================================================================
 " Status line
 " ==============================================================================
 " Always show the status line
 set laststatus=2
+
 
 
 " ==============================================================================
@@ -727,6 +748,8 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.ts,*.rb,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
+
+
 " ==============================================================================
 " Spell checking
 " ==============================================================================
@@ -739,6 +762,8 @@ map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
+
+
 
 " ==============================================================================
 " Misc
@@ -796,6 +821,8 @@ xmap <Leader>R
     \ :cfdo %s/<C-r>s//g \| update
      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 "-------------------------------------------------------------------------
+
+
 
 " ==============================================================================
 " Helper functions
