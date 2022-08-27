@@ -171,6 +171,15 @@ let g:airline_theme='gruvbox'
 
 
 " <-----------------------------------------------------------------------------
+" preservim/vim-markdown
+" Markdown syntax and command
+" ------------------------------------------------------------------------------
+" disable conceal
+let g:vim_markdown_conceal = 0
+" ----------------------------------------------------------------------------->
+
+
+" <-----------------------------------------------------------------------------
 " airblade/vim-gitgutter
 " clobber gitgutter sign
 " ------------------------------------------------------------------------------
@@ -184,9 +193,8 @@ let g:gitgutter_sign_allow_clobber = 1
 " dense-analysis/ale config
 " Asyncronous Lint Engine
 " ------------------------------------------------------------------------------
-let g:ale_fixers = {
- \ 'javascript': ['eslint']
- \ }
+" Fix files with prettier, and then ESLint.
+let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
 let g:ale_fix_on_save = 1
 " ----------------------------------------------------------------------------->
 
@@ -426,6 +434,18 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
+" Use a line cursor within insert mode and a block cursor everywhere else.
+" Reference chart of values:
+"   Ps = 0  -> blinking block.
+"   Ps = 1  -> blinking block (default).
+"   Ps = 2  -> steady block.
+"   Ps = 3  -> blinking underline.
+"   Ps = 4  -> steady underline.
+"   Ps = 5  -> blinking bar (xterm).
+"   Ps = 6  -> steady bar (xterm).
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
 " Avoid garbled characters in Chinese language windows OS
 let $LANG='en'
 set langmenu=en
@@ -602,28 +622,30 @@ set nojoinspaces
 " Tab completion
 " will insert tab at beginning of line,
 " will use completion if not at beginning
-set wildmode=list:longest                        " matches mimic that of bash or zsh
-set wildignore+=node_modules                     " node_modules dir
-set wildignore+=.ropeproject                     " py rope cache dir
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.spl                            " compiled spelling word lists
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store                       " OSX bullshit
-set wildignore+=migrations                       " Django migrations
-set wildignore+=*.pyc                            " Python byte code
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
+" Comment this, because it is conflict with coc completion
+"
+" set wildmode=list:longest                        " matches mimic that of bash or zsh
+" set wildignore+=node_modules                     " node_modules dir
+" set wildignore+=.ropeproject                     " py rope cache dir
+" set wildignore+=.hg,.git,.svn                    " Version control
+" set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+" set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+" set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+" set wildignore+=*.spl                            " compiled spelling word lists
+" set wildignore+=*.sw?                            " Vim swap files
+" set wildignore+=*.DS_Store                       " OSX bullshit
+" set wildignore+=migrations                       " Django migrations
+" set wildignore+=*.pyc                            " Python byte code
+" function! InsertTabWrapper()
+"     let col = col('.') - 1
+"     if !col || getline('.')[col - 1] !~ '\k'
+"         return "\<tab>"
+"     else
+"         return "\<c-p>"
+"     endif
+" endfunction
+" inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+" inoremap <S-Tab> <c-n>
 
 
 
