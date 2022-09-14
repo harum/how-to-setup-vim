@@ -518,7 +518,9 @@ set diffopt+=vertical
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
-
+" Do not conceal when insert
+autocmd InsertEnter  *.{markdown,md,json} set conceallevel=0
+autocmd InsertLeave  *.{markdown,md,json} set conceallevel=2
 
 " ==============================================================================
 " Colors and Fonts
