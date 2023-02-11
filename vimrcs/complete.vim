@@ -184,6 +184,8 @@ let g:vim_markdown_conceal = 0
 " clobber gitgutter sign
 " ------------------------------------------------------------------------------
 let g:gitgutter_sign_allow_clobber = 1
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 " ----------------------------------------------------------------------------->
 
 
