@@ -57,11 +57,13 @@ Plug 'pangloss/vim-javascript'                            " JavaScript syntax
 Plug 'HerringtonDarkholme/yats.vim'                       " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'                           " JSX syntax
 Plug 'posva/vim-vue'                                      " Vue syntax
-Plug 'preservim/vim-markdown'                             " Markdown syntax and command
 Plug 'airblade/vim-gitgutter'                             " show git diff of lines edited
 
-" -> Formatting and Autocomplete Section
+" tabular should be prior to markdown
 Plug 'godlygeek/tabular'                                  " Aligning text
+Plug 'preservim/vim-markdown'                             " Markdown syntax and command
+
+" -> Formatting and Autocomplete Section
 Plug 'tpope/vim-surround'                                 " Easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-endwise'                                  " Autocomplete end after a do
 Plug 'neoclide/coc.nvim', {'branch': 'release'}           " Auto completion
@@ -189,6 +191,14 @@ nmap [h <Plug>(GitGutterPrevHunk)
 " ----------------------------------------------------------------------------->
 
 
+" <-----------------------------------------------------------------------------
+" preservim/vim-markdown
+" Fenced code block languages
+" ------------------------------------------------------------------------------
+let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'js=javascript', 'ts=typescript', 'rb=ruby']
+" ----------------------------------------------------------------------------->
+
+
 " -> Formatting and Autocomplete Section =======================================
 
 " <-----------------------------------------------------------------------------
@@ -210,6 +220,7 @@ let g:ale_fix_on_save = 1
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ '@yaegassy/coc-volar',
+  \ '@yaegassy/coc-volar-tools',
   \ 'coc-eslint',
   \ 'coc-prettier',
   \ 'coc-json',
