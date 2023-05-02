@@ -439,7 +439,16 @@ let mapleader = " "
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
+" Open current directory on a terminal.
+" Terminal is shown on vertical split window.
+map <F6> :let $VIM_DIR=expand('%:p:h')<CR>:vert terminal<CR>cd $VIM_DIR<CR>
+nmap <leader>tt :let $VIM_DIR=expand('%:p:h')<CR>:vert terminal<CR>cd $VIM_DIR<CR>
 
+" Copy current relative path into yank
+nmap <leader>cp :let @" = expand("%")<cr>
+
+" Copy current full path into yank
+nmap <leader>fcp :let @" = expand("%:p")<cr>
 
 " ==============================================================================
 " VIM user interface
