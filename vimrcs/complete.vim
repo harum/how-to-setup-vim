@@ -97,14 +97,17 @@ Plug 'janko/vim-test'                                     " Run test, :TestFile,
 Plug 'tpope/vim-fugitive'                                 " :Git blame
 Plug 'tpope/vim-rhubarb'                                  " :GBrowse
 
+" -> Text manipulation
+Plug 'tpope/vim-abolish'                                  " Text substitution
+
 " -> Massive Plugin Section
 Plug 'tpope/vim-rails'                                    " Rails plugin
 call plug#end()
 
 " Source Vim configuration file and install plugins
-nnoremap <silent> <leader>r1 :source ~/.vimrc \| :PlugInstall<CR>
+nnoremap <silent> <leader>pi :source ~/.vimrc \| :PlugInstall<CR>
 " Open Vim configuration file for editing
-nnoremap <silent> <leader>r2 :e ~/.vimrc<CR>
+nnoremap <silent> <leader>si :e ~/.vimrc<CR>
 
 " ==============================================================================
 
