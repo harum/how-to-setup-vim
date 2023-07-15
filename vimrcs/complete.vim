@@ -123,6 +123,10 @@ nnoremap <silent> <leader>si :e ~/.vimrc<CR>
 " morhetz/gruvbox
 " color scheme
 " ------------------------------------------------------------------------------
+" handle italic text on comment
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+
 " set spell checking baground
 let g:gruvbox_guisp_fallback = "bg"
 " make dark theme contrast high
