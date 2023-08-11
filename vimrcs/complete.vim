@@ -48,6 +48,7 @@ call plug#begin()
 Plug 'morhetz/gruvbox'                                    " Color scheme
 Plug 'tomasr/molokai'                                     " Color scheme
 Plug 'dracula/vim', { 'as': 'dracula' }                   " Color scheme
+Plug 'ap/vim-css-color'                                   " CSS color
 
 Plug 'vim-airline/vim-airline'                            " Status line
 Plug 'vim-airline/vim-airline-themes'                     " Status line themes
@@ -64,6 +65,7 @@ Plug 'godlygeek/tabular'                                  " Aligning text
 Plug 'preservim/vim-markdown'                             " Markdown syntax and command
 
 " -> Formatting and Autocomplete Section
+Plug 'editorconfig/editorconfig-vim'                      " EditorConfig, consistent styles across editor and IDE
 Plug 'tpope/vim-surround'                                 " Easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-endwise'                                  " Autocomplete end after a do
 Plug 'neoclide/coc.nvim', {'branch': 'release'}           " Auto completion
@@ -95,7 +97,8 @@ Plug 'iamcco/markdown-preview.nvim', {
   \ }                                                     " Markdown preview
 Plug 'janko/vim-test'                                     " Run test, :TestFile, :TestNearest
 Plug 'tpope/vim-fugitive'                                 " :Git blame
-Plug 'tpope/vim-rhubarb'                                  " :GBrowse
+Plug 'tpope/vim-rhubarb'                                  " :GBrowse Github
+Plug 'shumphrey/fugitive-gitlab.vim'                      " :GBrowse Gitlab
 
 " -> Text manipulation
 Plug 'tpope/vim-abolish'                                  " Text substitution
