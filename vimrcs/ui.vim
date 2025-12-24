@@ -50,8 +50,31 @@ set colorcolumn=+1
 " =========================================================
 " 4. Cursor & line highlighting
 " =========================================================
+
+set guicursor=
+
+" Vim GUI / fallback
+set guicursor+=n-v-c:block
+set guicursor+=i:ver25
+set guicursor+=r:hor20
+
+" Terminal escape sequences (iTerm2 / xterm)
+" Reference chart of values:
+"   Ps = 0  -> blinking block.
+"   Ps = 1  -> blinking block (default).
+"   Ps = 2  -> steady block.
+"   Ps = 3  -> blinking underline.
+"   Ps = 4  -> steady underline.
+"   Ps = 5  -> blinking bar (xterm).
+"   Ps = 6  -> steady bar (xterm).
+let &t_SI = "\e[6 q"   " Insert: vertical bar
+let &t_EI = "\e[2 q"   " Normal: block
+let &t_SR = "\e[4 q"   " Replace: underline
+
 " Highlight the line the cursor is on.
 set cursorline
+autocmd InsertEnter * set nocursorline
+autocmd InsertLeave * set cursorline
 
 
 " =========================================================

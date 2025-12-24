@@ -1,7 +1,7 @@
-source ~/.vim/vimrcs/vanilla.vim
-source ~/.vim/vimrcs/mapping.vim
-source ~/.vim/vimrcs/plugins.vim
-source ~/.vim/vimrcs/setting.plugins.vim
-source ~/.vim/vimrcs/mapping.plugins.vim
-source ~/.vim/vimrcs/ui.plugins.vim
-source ~/.vim/vimrcs/ui.vim
+execute 'source' fnameescape(g:vimdir . '/vanilla.vim')
+execute 'source' fnameescape(g:vimdir . '/mapping.vim')
+execute 'source' fnameescape(g:vimdir . '/plugins.vim')
+execute 'source' fnameescape(g:vimdir . '/setting.plugins.vim')
+execute 'source' fnameescape(g:vimdir . '/mapping.plugins.vim')
+execute 'source' fnameescape(g:vimdir . '/ui.plugins.vim')
+execute 'source' fnameescape(g:vimdir . '/ui.vim')

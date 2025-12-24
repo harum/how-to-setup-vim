@@ -111,3 +111,9 @@ let g:vim_markdown_follow_anchor = 1
 " Enable JSX highlighting for JS and TS
 let g:vim_jsx_pretty_colorful_config = 1
 
+
+" =========================================================
+" itchyny/lightline
+" =========================================================
+set laststatus=2
+set noshowmode
