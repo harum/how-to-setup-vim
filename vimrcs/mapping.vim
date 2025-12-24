@@ -97,6 +97,9 @@ nnoremap <leader>Y "+yy
 " Toggle relative line numbers
 nnoremap <leader>nr :set relativenumber!<cr>
 
+" Toggle folding visibility instantly
+nnoremap <leader>z :set foldenable!<CR>
+
 " =========================================================
 " 7. Insert mode ergonomics
 " =========================================================

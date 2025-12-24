@@ -95,8 +95,10 @@ set listchars=tab:»·,trail:·,nbsp:·
 " Show a fold column to indicate foldable regions.
 set foldcolumn=1
 
-" Do not fold by default when opening files.
-set nofoldenable
+" Folding definition (safe, predictable)
+" No folding when initially open files.
+set foldmethod=indent
+set foldlevelstart=99
 
 
 " =========================================================
