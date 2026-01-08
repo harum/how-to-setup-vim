@@ -30,6 +30,13 @@ nnoremap <leader>gs :Git<CR>
 " Git blame
 nnoremap <leader>gb :Git blame<CR>
 
+" Git diff
+nnoremap <leader>gf :Git diff<CR>
+nnoremap <leader>gff :Git diff --cached<CR>
+
+" Stage change
+nnoremap <leader>ga :Git add -p<CR>
+
 " Open file on remote (GitHub / GitLab)
 nnoremap <leader>go :GBrowse<CR>
 
@@ -67,13 +74,6 @@ nnoremap <leader>tl :TestLast<CR>
 " =========================================================
 " Toggle Markdown preview
 nnoremap <leader>mp :MarkdownPreviewToggle<CR>
-
-
-" =========================================================
-" vim-prettier — formatting
-" =========================================================
-" Format current buffer
-nnoremap <leader>pf :Prettier<CR>
 
 
 " =========================================================
