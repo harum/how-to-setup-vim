@@ -1,0 +1,7 @@
+execute 'source' fnameescape(g:vimrc_root . '/vanilla.vim')
+execute 'source' fnameescape(g:vimrc_root . '/mapping.vim')
+execute 'source' fnameescape(g:vimrc_root . '/plugins.vim')
+execute 'source' fnameescape(g:vimrc_root . '/setting.plugins.vim')
+execute 'source' fnameescape(g:vimrc_root . '/mapping.plugins.vim')
+execute 'source' fnameescape(g:vimrc_root . '/ui.plugins.vim')
+execute 'source' fnameescape(g:vimrc_root . '/ui.vim')

@@ -1,67 +1,107 @@
-# Installation
+# Installation Guide
 
-There are two common version of Vim that can be used on MacOS, such as:
--  Terminal version of Vim 
--  GUI Mac application using [MacVim](https://github.com/macvim-dev/macvim)
+This guide explains how to install and enable the modular Vim configuration.
 
-## Vim Installation
-According to [Homebrew Formulae](https://formulae.brew.sh/formula/vim), run command below for installation.
-```bash
-brew install vim
+---
+
+## Requirements
+
+* Vim 8+ (terminal Vim)
+* `git`
+* Internet connection (for plugins)
+
+---
+
+## Step 1: Clone the repository
+
+```sh
+git clone <your-repo-url> ~/how-to-setup-vim
 ```
 
-After installation, you can use `vim` command to open folder or file on `vim`.
-```bash
-# open current folder
-vim .
+You may choose a different directory, but this guide assumes:
 
-# open file, example README.md file
-vim README.md
+```
+~/how-to-setup-vim/vimrcs
 ```
 
+---
 
-## MacVim Installation
-There are two option to install MacVim. First via direct download of `.dmg` file, and second using `homebrew`. Choose according to your need.
+## Step 2: Minimal `~/.vimrc`
 
-### Direct download
-Download MacVim `.dmg` file on the download [link](https://macvim-dev.github.io/macvim/). After downloading, you can double click on the downloaded file and drag it into the application.
+Edit (or create) `~/.vimrc`:
 
-To run MacVim, go to `Application` folder, or go to `Launchpad` then double click on `MacVim` application.
-
-At this moment, you can not directly open `MacVim` from terminal. To make it executable form terminal, we need to add `MacVim` alias on our `.bashrc` or `.zshrc`.
-
-Assume we use `.zshrc`, then run
-```bash
-# open .zshrc on terminal
-vim ~/.zshrc
-
-# or open .zshrc on MacVim
-/Applications/MacVim.app/Contents/bin/mvim ~/.zshrc
+```vim
+let g:vimrc_root = expand('~/how-to-setup-vim/vimrcs')
+source g:vimrc_root . '/main.vim'
 ```
 
-Add this line
-```bash
-alias mvim=/Applications/MacVim.app/Contents/bin/mvim
+This keeps your Vim entry point clean and delegates everything to `vimrcs/`.
+
+---
+
+## Step 3: Install plugins
+
+Open Vim and run:
+
+```vim
+:PlugInstall
 ```
 
-After saving the changes you can run this command to apply the newest changes on `~/.zshrc`
-```.bash
-source ~/.zshrc
+Restart Vim once installation completes.
+
+---
+
+## Optional: Local overrides
+
+For machine-specific or experimental changes, create:
+
+```vim
+~/.vimrc.local
 ```
 
-Now you can open file or folder using `mvim` command on terminal.
+Then source it **after** `main.vim`:
 
-
-### Using homebrew
-If you want to install MacVim using `homebrew`, you do not have to install `vim` using homebrew first. If you already install `vim` using `homebrew`, run this command first
-```bash
-brew unlink vim
-``` 
-
-According to [Homebrew Formulae](https://formulae.brew.sh/formula/macvim), run this command to install MacVim
-
-```bash
-brew install macvim
+```vim
+source expand('~/.vimrc.local')
 ```
 
-After the installation done, you can run `mvim` command on terminal.
+This prevents accidental commits of local tweaks.
+
+---
+
+## Filetype-specific settings
+
+Use standard Vim locations:
+
+```
+~/.vim/ftdetect/
+~/.vim/ftplugin/
+~/.vim/after/ftplugin/
+```
+
+Example:
+
+```vim
+" ~/.vim/after/ftplugin/sql.vim
+setlocal tabstop=2
+setlocal shiftwidth=2
+```
+
+---
+
+## Troubleshooting
+
+**Plugins not loading?**
+
+* Run `:PlugInstall`
+* Check `:messages`
+* Verify `plugins.vim` is sourced before plugin settings
+
+**Colors not applied?**
+
+* Ensure `set termguicolors`
+* Verify terminal true-color support
+
+---
+
+Installation complete 🎉
